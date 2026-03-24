@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.4.6
+
+- Updated README: clarified automatic hook configuration behavior
+- Updated description and tagline
+
 ## 0.4.5
 
 - Initial public release

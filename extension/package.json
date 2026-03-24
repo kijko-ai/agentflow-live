@@ -1,8 +1,8 @@
 {
   "name": "agent-flow",
   "displayName": "Agent Flow",
-  "description": "Real-time visualization of Claude Code agent orchestration — see your agents think, branch, and return as they work",
-  "version": "0.4.5",
+  "description": "Real-time visualization of Claude Code agent orchestration",
+  "version": "0.4.6",
   "publisher": "simon-p",
   "license": "Apache-2.0",
   "repository": {

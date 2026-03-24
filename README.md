@@ -1,6 +1,6 @@
 # Agent Flow
 
-Real-time visualization of Claude Code agent orchestration — see your agents think, branch, and return as they work.
+Real-time visualization of Claude Code agent orchestration — watch your agents think, branch, and coordinate as they work.
 
 ![Agent Flow visualization](https://res.cloudinary.com/dxlvclh9c/image/upload/v1773924941/screenshot_e7yox3.png)
 
@@ -29,12 +29,11 @@ Claude Code is powerful, but its execution is a black box — you see the final 
 2. Open the Command Palette (`Cmd+Shift+P`) and run **Agent Flow: Open Agent Flow**
 3. Start a Claude Code session in your workspace — Agent Flow will auto-detect it
 
-### Claude Code Hooks (recommended)
+### Claude Code Hooks
 
-For the lowest-latency live streaming, configure Claude Code hooks:
+Agent Flow automatically configures Claude Code hooks the first time you open the panel. These forward events from Claude Code to Agent Flow for zero-latency streaming.
 
-1. Run **Agent Flow: Configure Claude Code Hooks** from the Command Palette
-2. This adds hook entries to your Claude Code `settings.json` that forward events to Agent Flow's built-in HTTP server
+To manually reconfigure hooks, run **Agent Flow: Configure Claude Code Hooks** from the Command Palette.
 
 ### JSONL Event Log
 
