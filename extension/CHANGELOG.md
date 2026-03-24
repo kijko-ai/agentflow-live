@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.7
+
+- Fix: reset button in review mode no longer breaks the extension
+  - Active agents are preserved across reset; only completed state and visual history are cleared
+  - Event log is trimmed to retain agent_spawn events so review mode seeking works correctly
+
 ## 0.4.6
 
 - Updated README: clarified automatic hook configuration behavior

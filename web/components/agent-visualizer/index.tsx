@@ -166,7 +166,7 @@ export function AgentVisualizer() {
 
   const handleRestart = useCallback(() => {
     setIsReviewing(false)
-    restart()
+    restart(true)
   }, [restart])
 
   // Keyboard shortcuts

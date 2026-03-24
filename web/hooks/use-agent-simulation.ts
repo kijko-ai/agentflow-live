@@ -6,6 +6,7 @@ import {
   ToolCallNode,
   Edge,
   SimulationEvent,
+  type TimelineEntry,
 } from '@/lib/agent-types'
 import { MOCK_SCENARIO } from '@/lib/mock-scenario'
 import { TOOL_CARD_W, TOOL_CARD_H, FORCE, TOOL_SLOT, BUBBLE_VISIBLE_S, MODEL_CONTEXT_SIZES, DEFAULT_CONTEXT_SIZE, FALLBACK_CONTEXT_SIZE, ANIM_SPEED } from '@/lib/canvas-constants'
@@ -275,11 +276,54 @@ export function useAgentSimulation(options: UseAgentSimulationOptions = {}) {
   const play = useCallback(() => setState(prev => ({ ...prev, isPlaying: true })), [])
   const pause = useCallback(() => setState(prev => ({ ...prev, isPlaying: false })), [])
 
-  const restart = useCallback(() => {
+  const restart = useCallback((keepActive = false) => {
     blockIdCounter.current = 0
     resetMsgIdCounter()
-    setState(prev => createEmptyState({ isPlaying: true, speed: prev.speed }))
-  }, [])
+    if (!keepActive) {
+      setState(prev => createEmptyState({ isPlaying: true, speed: prev.speed }))
+      return
+    }
+    // Keep active agents but clear completed state and visual history.
+    // Trim the event log to only agent_spawn events for surviving agents
+    // so seekToTime can reconstruct them during review mode.
+    setState(prev => {
+      const agents = new Map<string, Agent>()
+      for (const [id, agent] of prev.agents) {
+        if (agent.state !== 'complete') {
+          agents.set(id, { ...agent, toolCalls: 0, messageBubbles: [], timeAlive: 0 })
+        }
+      }
+
+      const edges = prev.edges.filter(e =>
+        e.type === 'parent-child' && agents.has(e.from) && agents.has(e.to)
+      )
+
+      const timelineEntries = new Map<string, TimelineEntry>()
+      for (const [id, entry] of prev.timelineEntries) {
+        if (agents.has(id)) {
+          timelineEntries.set(id, { ...entry, blocks: [] })
+        }
+      }
+
+      const conversations: SimulationState['conversations'] = new Map()
+      for (const id of agents.keys()) conversations.set(id, [])
+
+      const eventLog = prev.eventLog.filter(e =>
+        e.type === 'agent_spawn' && agents.has(e.payload?.name as string)
+      )
+
+      return {
+        ...createEmptyState({ isPlaying: true, speed: prev.speed }),
+        agents, edges, timelineEntries, conversations,
+        eventLog, eventIndex: eventLog.length,
+      }
+    })
+    // Re-sync force simulation with surviving agents
+    setTimeout(() => {
+      const s = stateRef.current
+      syncForceSimulation(s.agents, s.edges)
+    }, 0)
+  }, [syncForceSimulation])
 
   const setSpeed = useCallback((speed: number) => setState(prev => ({ ...prev, speed })), [])
 
