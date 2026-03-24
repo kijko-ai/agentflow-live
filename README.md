@@ -2,8 +2,6 @@
 
 Real-time visualization of Claude Code agent orchestration — see your agents think, branch, and return as they work.
 
-https://github.com/user-attachments/assets/14eb599d-2633-4df5-a07f-861839be5405
-
 ![Agent Flow visualization](https://res.cloudinary.com/dxlvclh9c/image/upload/v1773924941/screenshot_e7yox3.png)
 
 ## Why Agent Flow?
