@@ -1,6 +1,6 @@
 # Agent Flow
 
-Real-time visualization of Claude Code agent orchestration — watch your agents think, branch, and coordinate as they work.
+Real-time visualization of Claude Code agent orchestration. Watch your agents think, branch, and coordinate as they work. [Demo video here](https://www.youtube.com/watch?v=Ud6eDrFN-TA). 
 
 ![Agent Flow visualization](https://res.cloudinary.com/dxlvclh9c/image/upload/v1773924941/screenshot_e7yox3.png)
 
