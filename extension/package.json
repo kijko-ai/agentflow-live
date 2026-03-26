@@ -12,7 +12,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/patoles/agent-flow"
+    "url": "https://github.com/kijko-ai/agentflow-live"
   },
   "icon": "media/icon.png",
   "engines": {
