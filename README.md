@@ -1,6 +1,6 @@
 # Agent Flow
 
-Real-time visualization of Claude Code agent orchestration. Watch your agents think, branch, and coordinate as they work. [Demo video here](https://www.youtube.com/watch?v=Ud6eDrFN-TA). 
+Real-time visualization of Claude Code and Codex agent orchestration. Watch your agents think, branch, and coordinate as they work. [Demo video here](https://www.youtube.com/watch?v=Ud6eDrFN-TA). 
 
 ![Agent Flow visualization](https://res.cloudinary.com/dxlvclh9c/image/upload/v1773924941/screenshot_e7yox3.png)
 
@@ -8,9 +8,9 @@ Real-time visualization of Claude Code agent orchestration. Watch your agents th
 
 I built Agent Flow while developing [CraftMyGame](https://craftmygame.com), a game creation platform driven by AI agents. Debugging agent behavior was painful, so we made it visual. Now we're sharing it.
 
-Claude Code is powerful, but its execution is a black box — you see the final result, not the journey. Agent Flow makes the invisible visible:
+Claude Code and Codex are powerful, but their execution is a black box — you see the final result, not the journey. Agent Flow makes the invisible visible:
 
-- **Understand agent behavior** — See how Claude breaks down problems, which tools it reaches for, and how subagents coordinate
+- **Understand agent behavior** — See how Claude Code or Codex breaks down problems, which tools they reach for, and how subagents coordinate
 - **Debug tool call chains** — When something goes wrong, trace the exact sequence of decisions and tool calls that led there
 - **See where time is spent** — Identify slow tool calls, unnecessary branching, or redundant work at a glance
 - **Learn by watching** — Build intuition for how to write better prompts by observing how Claude interprets and executes them
@@ -18,7 +18,7 @@ Claude Code is powerful, but its execution is a black box — you see the final 
 ## Features
 
 - **Live agent visualization**: Watch agent execution as an interactive node graph with real-time tool calls, branching, and return flows
-- **Auto-detect Claude Code sessions**: Automatically discovers active Claude Code sessions in your workspace and streams events
+- **Auto-detect Claude Code and Codex sessions**: Automatically discovers active sessions in your workspace and streams events
 - **Claude Code hooks**: Lightweight HTTP hook server receives events directly from Claude Code for zero-latency streaming
 - **Multi-session support**: Track multiple concurrent agent sessions with tabs
 - **Interactive canvas**: Pan, zoom, click agents and tool calls to inspect details
@@ -29,13 +29,17 @@ Claude Code is powerful, but its execution is a black box — you see the final 
 
 1. Install the extension
 2. Open the Command Palette (`Cmd+Shift+P`) and run **Agent Flow: Open Agent Flow**
-3. Start a Claude Code session in your workspace — Agent Flow will auto-detect it
+3. Start a Claude Code or Codex session in your workspace — Agent Flow will auto-detect it
 
 ### Claude Code Hooks
 
 Agent Flow automatically configures Claude Code hooks the first time you open the panel. These forward events from Claude Code to Agent Flow for zero-latency streaming.
 
 To manually reconfigure hooks, run **Agent Flow: Configure Claude Code Hooks** from the Command Palette.
+
+### Codex Sessions
+
+Codex sessions are discovered directly from `~/.codex/sessions` and grouped by parent session so spawned Codex subagents appear inside the same graph instead of as unrelated tabs.
 
 ### JSONL Event Log
 
@@ -57,7 +61,12 @@ You can also point Agent Flow at a JSONL event log file:
 
 | Shortcut | Action |
 |----------|--------|
+| `Cmd+Alt+Shift+A` (Mac) / `Ctrl+Alt+Shift+A` (Win/Linux) | Open Agent Flow |
 | `Cmd+Alt+A` (Mac) / `Ctrl+Alt+A` (Win/Linux) | Open Agent Flow |
+
+## Launch Button
+
+Agent Flow adds a visible launch button to the VS Code status bar. Look in the bottom-left of the window for `Agent Flow` and click it to open the visualizer.
 
 ## Settings
 
@@ -70,7 +79,7 @@ You can also point Agent Flow at a JSONL event log file:
 ## Requirements
 
 - VS Code 1.85 or later
-- For auto-detection: Claude Code CLI with active sessions
+- For auto-detection: Claude Code CLI and/or Codex with active sessions
 
 ## Author
 

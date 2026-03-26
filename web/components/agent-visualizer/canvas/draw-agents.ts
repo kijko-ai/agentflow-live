@@ -26,6 +26,35 @@ export function drawClaudeSpark(ctx: CanvasRenderingContext2D, cx: number, cy: n
   ctx.restore()
 }
 
+function drawCodexMark(ctx: CanvasRenderingContext2D, cx: number, cy: number, r: number, color: string) {
+  ctx.save()
+  ctx.strokeStyle = color
+  ctx.lineWidth = Math.max(1.5, r * 0.08)
+  ctx.lineCap = 'round'
+  ctx.lineJoin = 'round'
+
+  const size = r * 0.42
+  ctx.beginPath()
+  ctx.moveTo(cx - size * 0.95, cy)
+  ctx.lineTo(cx - size * 0.25, cy - size * 0.7)
+  ctx.lineTo(cx - size * 0.25, cy + size * 0.7)
+  ctx.closePath()
+  ctx.stroke()
+
+  ctx.beginPath()
+  ctx.moveTo(cx + size * 0.95, cy)
+  ctx.lineTo(cx + size * 0.25, cy - size * 0.7)
+  ctx.lineTo(cx + size * 0.25, cy + size * 0.7)
+  ctx.closePath()
+  ctx.stroke()
+
+  ctx.beginPath()
+  ctx.moveTo(cx - size * 0.05, cy + size * 0.9)
+  ctx.lineTo(cx + size * 0.05, cy - size * 0.9)
+  ctx.stroke()
+  ctx.restore()
+}
+
 export function drawContextComposition(
   ctx: CanvasRenderingContext2D,
   agent: Agent,
@@ -225,7 +254,8 @@ function drawCenterIcon(ctx: CanvasRenderingContext2D, agent: Agent, r: number, 
     ctx.stroke()
     ctx.restore()
   } else if (agent.isMain) {
-    drawClaudeSpark(ctx, agent.x, agent.y, r, color + '90')
+    if (agent.provider === 'codex') drawCodexMark(ctx, agent.x, agent.y, r, color + '90')
+    else drawClaudeSpark(ctx, agent.x, agent.y, r, color + '90')
   } else {
     ctx.fillStyle = color + '90'
     ctx.font = `${r * AGENT_DRAW.subIconScale}px monospace`

@@ -1,10 +1,15 @@
 {
-  "name": "agent-flow",
-  "displayName": "Agent Flow",
-  "description": "Real-time visualization of Claude Code agent orchestration",
-  "version": "0.4.9",
-  "publisher": "simon-p",
+  "name": "agentflow-live",
+  "displayName": "AgentFlow Live",
+  "description": "Real-time visualization of Claude Code and Codex agent orchestration",
+  "version": "1.0.0",
+  "publisher": "codex-tools",
+  "author": "David",
   "license": "Apache-2.0",
+  "extensionKind": [
+    "ui",
+    "workspace"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/patoles/agent-flow"
@@ -13,13 +18,42 @@
   "engines": {
     "vscode": "^1.85.0"
   },
-  "categories": ["Visualization", "Other"],
-  "keywords": ["llm", "agent", "claude", "ai", "visualization", "orchestration"],
+  "categories": [
+    "Visualization",
+    "Other"
+  ],
+  "keywords": [
+    "llm",
+    "agent",
+    "claude",
+    "codex",
+    "ai",
+    "visualization",
+    "orchestration"
+  ],
   "activationEvents": [
-    "onWebviewPanel:agentVisualizer"
+    "onWebviewPanel:agentVisualizer",
+    "onStartupFinished"
   ],
   "main": "./dist/extension.js",
   "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "agentflow-live",
+          "title": "AgentFlow Live",
+          "icon": "media/sidebar-icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "agentflow-live": [
+        {
+          "id": "agentFlowLive.launcher",
+          "name": "AgentFlow Live"
+        }
+      ]
+    },
     "commands": [
       {
         "command": "agentVisualizer.open",
@@ -47,6 +81,11 @@
         "command": "agentVisualizer.open",
         "key": "ctrl+alt+a",
         "mac": "cmd+alt+a"
+      },
+      {
+        "command": "agentVisualizer.open",
+        "key": "ctrl+alt+shift+a",
+        "mac": "cmd+alt+shift+a"
       }
     ],
     "configuration": {
@@ -81,8 +120,9 @@
     "vscode:uninstall": "node scripts/uninstall.js"
   },
   "devDependencies": {
-    "@types/vscode": "^1.85.0",
     "@types/node": "^20.0.0",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^3.7.1",
     "esbuild": "^0.20.0",
     "typescript": "^5.3.0"
   }

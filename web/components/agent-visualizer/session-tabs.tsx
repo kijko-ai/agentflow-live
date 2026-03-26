@@ -54,7 +54,17 @@ export function SessionTabs({
               border: `1px solid ${isSelected ? COLORS.tabSelectedBorder : COLORS.tabInactiveBorder}`,
               color: isSelected ? COLORS.holoBright : COLORS.textMuted,
             }}
-          >
+            >
+            <span
+              className="px-1 rounded-sm text-[8px] leading-[12px]"
+              style={{
+                background: COLORS.holoBg03,
+                color: session.provider === 'codex' ? COLORS.complete : COLORS.textMuted,
+                border: `1px solid ${COLORS.holoBorder06}`,
+              }}
+            >
+              {session.provider === 'codex' ? 'CX' : 'CC'}
+            </span>
             <span
               className="inline-block w-1.5 h-1.5 rounded-full flex-shrink-0"
               style={{

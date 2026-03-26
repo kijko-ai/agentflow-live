@@ -19,6 +19,7 @@ export function handleAgentSpawn(
   const isMain = asBoolean(payload.isMain)
   const task = typeof payload.task === 'string' ? payload.task : undefined
   const model = typeof payload.model === 'string' ? payload.model : undefined
+  const provider = payload.provider === 'codex' ? 'codex' : payload.provider === 'claude' ? 'claude' : undefined
 
   // If the agent already exists (e.g. session resuming after inactivity),
   // reactivate it instead of replacing — preserves accumulated stats.
@@ -27,6 +28,7 @@ export function handleAgentSpawn(
     state.agents.set(name, {
       ...existing,
       state: 'idle',
+      ...(provider ? { provider } : {}),
       ...(task ? { task } : {}),
       ...(model ? { tokensMax: ctx.getContextWindowSize(model) } : {}),
     })
@@ -73,6 +75,7 @@ export function handleAgentSpawn(
 
   const agent: Agent = {
     id: name, name, state: 'idle',
+    ...(provider ? { provider } : {}),
     parentId: parentId || null,
     tokensUsed: 0, tokensMax: ctx.getContextWindowSize(model),
     contextBreakdown: emptyContextBreakdown(),

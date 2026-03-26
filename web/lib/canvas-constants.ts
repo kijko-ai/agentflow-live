@@ -3,6 +3,8 @@
 export const MODEL_CONTEXT_SIZES: Record<string, number> = {
   'opus-4-6': 1_000_000,
   'sonnet-4-6': 1_000_000,
+  'gpt-5': 258_400,
+  'gpt-4.1': 1_000_000,
 }
 export const DEFAULT_CONTEXT_SIZE = 200_000
 export const FALLBACK_CONTEXT_SIZE = 1_000_000
@@ -360,4 +362,3 @@ export const HIT_DETECTION = {
   toolExpandedH: 34,
   toolCollapsedH: 24,
 } as const
-

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <!-- Connections from center to satellite nodes -->
+  <line x1="12" y1="9.5" x2="12" y2="4.5" stroke="#C5C5C5" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="14" y1="13.5" x2="18.5" y2="16.5" stroke="#C5C5C5" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="10" y1="13.5" x2="5.5" y2="16.5" stroke="#C5C5C5" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- Satellite nodes -->
+  <circle cx="12" cy="3.5" r="2.2" fill="#C5C5C5"/>
+  <circle cx="19.5" cy="17.5" r="2.2" fill="#C5C5C5"/>
+  <circle cx="4.5" cy="17.5" r="2.2" fill="#C5C5C5"/>
+  <!-- Center node (larger) -->
+  <circle cx="12" cy="12" r="3.5" fill="#C5C5C5"/>
+</svg>

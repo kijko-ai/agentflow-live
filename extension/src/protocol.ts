@@ -28,9 +28,12 @@ export interface AgentEvent {
   sessionId?: string
 }
 
+export type SessionProvider = 'claude' | 'codex'
+
 export interface SessionInfo {
   id: string
   label: string
+  provider: SessionProvider
   status: 'active' | 'completed'
   startTime: number
   lastActivityTime: number
@@ -163,7 +166,7 @@ export interface SubagentState {
   spawnEmitted: boolean
 }
 
-/** State tracked for a single watched Claude Code session */
+/** State tracked for a single watched session */
 export interface WatchedSession {
   sessionId: string
   filePath: string
@@ -211,4 +214,3 @@ export interface ClaudeHookDef {
 export interface ClaudeHookEntry {
   hooks?: ClaudeHookDef[]
 }
-

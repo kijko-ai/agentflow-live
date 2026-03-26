@@ -16,6 +16,7 @@ export interface Agent {
   id: string
   name: string
   state: AgentState
+  provider?: 'claude' | 'codex'
   parentId: string | null
   tokensUsed: number
   tokensMax: number

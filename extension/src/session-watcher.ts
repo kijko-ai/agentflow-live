@@ -93,6 +93,7 @@ export class SessionWatcher implements vscode.Disposable {
     return Array.from(this.sessions.values()).map(s => ({
       id: s.sessionId,
       label: s.label,
+      provider: 'claude',
       status: s.sessionCompleted ? 'completed' : 'active',
       startTime: s.sessionStartTime,
       lastActivityTime: s.lastActivityTime,
@@ -112,6 +113,7 @@ export class SessionWatcher implements vscode.Disposable {
           name: ORCHESTRATOR_NAME,
           isMain: true,
           task: session.label,
+          provider: 'claude',
           ...(session.model ? { model: session.model } : {}),
         },
       }, sessionId)
@@ -403,6 +405,7 @@ export class SessionWatcher implements vscode.Disposable {
         name: ORCHESTRATOR_NAME,
         isMain: true,
         task: session.label,
+        provider: 'claude',
         ...(session.model ? { model: session.model } : {}),
       },
     }, sessionId)
@@ -483,6 +486,7 @@ export class SessionWatcher implements vscode.Disposable {
           name: ORCHESTRATOR_NAME,
           isMain: true,
           task: session.label,
+          provider: 'claude',
           ...(session.model ? { model: session.model } : {}),
         },
       }, sessionId)
